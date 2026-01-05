@@ -1,0 +1,4 @@
+empId,name,design,skill,email,salary,status,statusCriticallity,rating
+1001,Akhilesh,Consultant,SAPUI5,akhi@gmail.com,100000,parmanent,4,4
+1002,Sakshat,Fresher,JAVA,saks@gmail.com,50000,parmanent,4,4
+1003,Krishna,Asso Consultant,Node,kris@gmail.com,25000,parmanent,4,4

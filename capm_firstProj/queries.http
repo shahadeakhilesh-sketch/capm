@@ -1,0 +1,40 @@
+## QUERY Operation
+# GET http://localhost:4004/odata/v4/emp-mgmt/EmployeeSet
+
+## READ Operation
+# GET http://localhost:4004/odata/v4/emp-mgmt/EmployeeSet('1001')
+
+## CREATE Operation
+# POST http://localhost:4004/odata/v4/emp-mgmt/EmployeeSet
+# Content-Type: application/json
+
+# {
+#       "empId": "1004",
+#       "name": "Ashwin",
+#       "design": "Associate",
+#       "skill": "HR",
+#       "email": "ashw@gmail.com",
+#       "salary": 750000,
+#       "status": "parmanent",
+#       "statusCriticallity": 4,
+#       "rating": 4
+# }
+
+## UPDATE Operation
+# PUT http://localhost:4004/odata/v4/emp-mgmt/EmployeeSet('1004')
+# Content-Type: application/json
+
+# {
+#       "empId": "1004",
+#       "name": "Ashwin",
+#       "design": "Associate",
+#       "skill": "MBA",
+#       "email": "ashw@gmail.com",
+#       "salary": 750000,
+#       "status": "parmanent",
+#       "statusCriticallity": 4,
+#       "rating": 4
+# }
+
+## DELETE Operatioon
+# DELETE http://localhost:4004/odata/v4/emp-mgmt/EmployeeSet('1005')

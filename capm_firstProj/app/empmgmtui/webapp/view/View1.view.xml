@@ -1,0 +1,10 @@
+<mvc:View xmlns:mdc="sap.ui.mdc" xmlns:table="sap.ui.table" controllerName="com.demo.empmgmtui.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+    <content>
+    <Table id="EmpTab" items="{path:'/Employees'}" mode="SingleSelectLeft"> 
+    </Table>
+    </content>
+    </Page>
+</mvc:View>
