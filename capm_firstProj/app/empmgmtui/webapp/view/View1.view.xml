@@ -3,7 +3,33 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
     <content>
-    <Table id="EmpTab" items="{path:'/Employees'}" mode="SingleSelectLeft"> 
+    <Table id="EmpTab" items="{/EmployeeSet}">
+        <columns>
+        <Column >
+            <Text text="Employee ID"></Text>
+        </Column>
+        <Column >
+            <Text text="Name"></Text>
+        </Column>
+        <Column >
+            <Text text="Designation"></Text>
+        </Column>
+        <Column >
+            <Text text="Skill"></Text>
+        </Column>
+        <Column >
+            <Text text="Email"></Text>
+        </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <Text text="{empId}"></Text>
+                <Text text="{name}"></Text>
+                <Text text="{design}"></Text>
+                <Text text="{skill}"></Text>
+                <Text text="{email}"></Text>
+            </ColumnListItem>
+        </items>
     </Table>
     </content>
     </Page>
