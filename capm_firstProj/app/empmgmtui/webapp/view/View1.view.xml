@@ -1,36 +1,44 @@
-<mvc:View xmlns:mdc="sap.ui.mdc" xmlns:table="sap.ui.table" controllerName="com.demo.empmgmtui.controller.View1"
+<mvc:View xmlns:mdc="sap.ui.mdc"
+    xmlns:table="sap.ui.table" controllerName="com.demo.empmgmtui.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-    <content>
-    <Table id="EmpTab" items="{/EmployeeSet}">
-        <columns>
-        <Column >
-            <Text text="Employee ID"></Text>
-        </Column>
-        <Column >
-            <Text text="Name"></Text>
-        </Column>
-        <Column >
-            <Text text="Designation"></Text>
-        </Column>
-        <Column >
-            <Text text="Skill"></Text>
-        </Column>
-        <Column >
-            <Text text="Email"></Text>
-        </Column>
-        </columns>
-        <items>
-            <ColumnListItem>
-                <Text text="{empId}"></Text>
-                <Text text="{name}"></Text>
-                <Text text="{design}"></Text>
-                <Text text="{skill}"></Text>
-                <Text text="{email}"></Text>
-            </ColumnListItem>
-        </items>
-    </Table>
-    </content>
+        <content>
+            <Table id="EmpTab" items="{/EmployeeSet}" class="sapUiSmallMargin" width="auto">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Employee Table"></Title>
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <SearchField id="SF" width="30%" liveChange="onSearch"></SearchField>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column >
+                        <Text text="Employee ID"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Name"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Designation"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Skill"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Email"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <Text text="{empId}"></Text>
+                        <Text text="{name}"></Text>
+                        <Text text="{design}"></Text>
+                        <Text text="{skill}"></Text>
+                        <Text text="{email}"></Text>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
     </Page>
 </mvc:View>
