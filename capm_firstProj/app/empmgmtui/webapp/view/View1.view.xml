@@ -30,11 +30,11 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem>
-                        <Text text="{empId}"></Text>
+                    <ColumnListItem type="Active" press="onPressRow">
+                        <Text text="{ID}"></Text>
                         <Text text="{name}"></Text>
-                        <Text text="{design}"></Text>
-                        <Text text="{skill}"></Text>
+                        <Text text="{desig_code}"></Text>
+                        <Text text="{skill_code}"></Text>
                         <Text text="{email}"></Text>
                     </ColumnListItem>
                 </items>

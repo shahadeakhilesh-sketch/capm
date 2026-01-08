@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/Filter"
+    "sap/ui/model/Filter",
 ], (Controller, Filter) => {
     "use strict";
 
@@ -14,6 +14,12 @@ sap.ui.define([
                 aFilters.push(new Filter("name", "Contains", name));
             }
             this.byId("EmpTab").getBinding("items").filter(aFilters);
+        },
+        onPressRow:function(oEvent) {
+            var sEmpId = oEvent.getSource().getBindingContext().getObject().ID;
+            this.getOwnerComponent().getRouter().navTo("RouteView2",{
+                EMPID:sEmpId
+            });
         }
     });
 });

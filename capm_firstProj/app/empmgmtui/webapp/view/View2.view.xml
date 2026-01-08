@@ -1,0 +1,43 @@
+<mvc:View xmlns:mdc="sap.ui.mdc"
+    xmlns:table="sap.ui.table" controllerName="com.demo.empmgmtui.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Page title="Employee Data">
+        <content>
+            <ObjectHeader title="{name}" number="{salary}">
+                <attributes>
+                    <ObjectAttribute title="ID" text="{ID}"></ObjectAttribute>
+                    <ObjectAttribute title="Designation" text="{desig_code}"></ObjectAttribute>
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{status}"></ObjectStatus>
+                </statuses>
+            </ObjectHeader>
+            <IconTabBar >
+                <items>
+                    <IconTabFilter icon="sap-icon//information">
+                        <f:SimpleForm>
+                            <f:content>
+                                <Label text="Employee Id"/>
+                                <Text text="{ID}"/>
+                                <Label text="Name"/>
+                                <Text text="{name}"/>
+                                <Label text="Designation"/>
+                                <Text text="{desig_code}"/>
+                                <Label text="Skill"/>
+                                <Text text="{skill_code}"/>
+                                <Label text="email"/>
+                                <Text text="{email}"/>
+                                <Label text="Salary"/>
+                                <Text text="{salary}"/>
+                                <Label text="Status"/>
+                                <Text text="{status}"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
