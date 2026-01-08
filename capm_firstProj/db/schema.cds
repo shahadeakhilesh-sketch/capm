@@ -1,12 +1,14 @@
 namespace empmgmt.db;
-using { cuid } from '@sap/cds/common';
+using { cuid, managed} from '@sap/cds/common';
 
 
-entity Employees: cuid {
+entity Employees: cuid, managed {
     // key empId: String;//Removed this for Managed
     name: String @mandatory;
-    design: String @mandatory;
-    skill: String @mandatory;
+    // desig: String @mandatory;
+    // skill: String @mandatory;
+    desig: Association to Desigs;
+    skill: Association to Skills;
     email: String @mandatory;
     salary: Decimal;
     status: String @mandatory;
@@ -21,4 +23,14 @@ entity Projects: cuid {
     // key prjid: String;//Removed this for Managed
     prjname: String;
     client: String;
+}
+
+entity Desigs {
+    key code: String;
+    desc: String
+}
+
+entity Skills {
+    key code: String;
+    desc: String;
 }
