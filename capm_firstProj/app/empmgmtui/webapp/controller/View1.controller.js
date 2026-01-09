@@ -26,7 +26,7 @@ sap.ui.define([
             var tableBinding = this.byId("EmpTab").getBinding("items");
             var oBindingContext = tableBinding.create(); //give a new binding context (memory)
             this.oBindingContext = oBindingContext;
-            this.oBindingContext.created().then(function () {
+            oBindingContext.created().then(function () {
                 MessageBox.success(this.oBindingContext.getObject().ID);
                 this._createEmpFrag.close();
             }.bind(this), function (error) {
