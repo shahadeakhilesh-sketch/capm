@@ -9,7 +9,8 @@
                     <Toolbar>
                         <Title text="Employee Table"></Title>
                         <ToolbarSpacer ></ToolbarSpacer>
-                        <SearchField id="SF" width="30%" liveChange="onSearch"></SearchField>
+                        <!-- <SearchField id="SF" width="30%" liveChange="onSearch"></SearchField> -->
+                        <Button text="Create New Employee" type="Emphasized" icon="sap-icon://add" press="onCreateEmpOpen"></Button>
                     </Toolbar>
                 </headerToolbar>
                 <columns>

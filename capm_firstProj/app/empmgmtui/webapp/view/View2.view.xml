@@ -16,10 +16,10 @@
             </ObjectHeader>
             <IconTabBar >
                 <items>
-                    <IconTabFilter icon="sap-icon//information">
+                    <IconTabFilter icon="sap-icon://information">
                         <f:SimpleForm>
                             <f:content>
-                                <Label text="Employee Id"/>
+                                <Label text="Employee ID"/>
                                 <Text text="{ID}"/>
                                 <Label text="Name"/>
                                 <Text text="{name}"/>
@@ -27,7 +27,7 @@
                                 <Text text="{desig_code}"/>
                                 <Label text="Skill"/>
                                 <Text text="{skill_code}"/>
-                                <Label text="email"/>
+                                <Label text="Email"/>
                                 <Text text="{email}"/>
                                 <Label text="Salary"/>
                                 <Text text="{salary}"/>
@@ -35,6 +35,32 @@
                                 <Text text="{status}"/>
                             </f:content>
                         </f:SimpleForm>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://capital-projects">
+                        <Table items="{projects}">
+                            <columns>
+                                <Column >
+                                    <Text text="Employee ID"></Text>
+                                </Column>
+                                <Column >
+                                    <Text text="Project ID"></Text>
+                                </Column>
+                                <Column >
+                                    <Text text="Project Name"></Text>
+                                </Column>
+                                <Column >
+                                    <Text text="Client"></Text>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <Text text="{emp_ID}"></Text>
+                                    <Text text="{ID}"></Text>
+                                    <Text text="{prjname}"></Text>
+                                    <Text text="{client}"></Text>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
                     </IconTabFilter>
                 </items>
             </IconTabBar>

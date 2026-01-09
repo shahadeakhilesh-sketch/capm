@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:table="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Dialog title="Create Employee" contentHeight="70%" contentWidth="50%">
+        <f:SimpleForm editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="3" emptySpanM="3">
+            <f:content>
+                <Label text="Name"/>
+                <Input value="{name}"/>
+                <Label text="Designation"/>
+                <Input value="{desig_code}"/>
+                <Label text="Skill"/>
+                <Input value="{skill_code}"/>
+                <Label text="Email"/>
+                <Input value="{email}"/>
+                <Label text="Salary"/>
+                <Input value="{salary}"/>
+                <Label text="Rating"/>
+                <Input value="{rating}"/>
+                <Label text="Status"/>
+                <Input value="{status}"/>
+            </f:content>
+        </f:SimpleForm>
+        <beginButton>
+            <Button text="Save" type="Emphasized" press="onPressSave"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" press="onPressCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
