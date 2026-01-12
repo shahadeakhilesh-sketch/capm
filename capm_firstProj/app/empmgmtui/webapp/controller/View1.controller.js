@@ -35,7 +35,7 @@ sap.ui.define([
             var oBindingContext = tableBinding.create(); //give a new binding context (memory)
             this.oBindingContext = oBindingContext;
             oBindingContext.created().then(function () {
-                MessageBox.success(this.oBindingContext.getObject().ID + "Employee created successfully.");
+                MessageBox.success(this.oBindingContext.getObject().ID + " Employee created successfully.");
                 this.getDialog().close();
             }.bind(this), function (error) {
                 MessageBox.error(error);
@@ -45,6 +45,14 @@ sap.ui.define([
         },
         onPressSave: function () {
             this.oModel.submitBatch("EmpGrp"); //UpdateGroupId from manifest.json file
+            //To show message on update
+            // if (this.edit) {
+            //     this.oModel.submitBatch("EmpGrp").then(function () {
+            //         MessageBox.success("Employee updated successfully.");
+            //     }, function (err) {
+            //         MessageBox.error(error);
+            //     });
+            // }
         },
         onPressCancel: function () {
             this.getDialog().close();
@@ -64,7 +72,7 @@ sap.ui.define([
                 MessageBox.error(err);
             });
         },
-        onAddProject: function(){
+        onAddProject: function () {
             var tableBinding = this.byId("PrjTab").getBinding("items");
             var oBindingContext = tableBinding.create(); //Create a new memory of project table
         },
