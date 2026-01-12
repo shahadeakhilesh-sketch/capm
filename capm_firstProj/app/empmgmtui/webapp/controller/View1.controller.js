@@ -7,6 +7,7 @@ sap.ui.define([
 
     return Controller.extend("com.demo.empmgmtui.controller.View1", {
         onInit() {
+            this.oModel = this.getOwnerComponent().getModel();
         },
         onSearch: function (oEvent) {
             var aFilters = [];
@@ -22,29 +23,50 @@ sap.ui.define([
                 EMPID: sEmpId
             });
         },
+        getDialog: function () {
+            if (!this._createEmpFrag) {
+                this._createEmpFrag = sap.ui.xmlfragment(this.getView().getId(), "com.demo.empmgmtui.view.fragments.CreateNewEmp", this);
+                this.getView().addDependent(this._createEmpFrag);
+            }
+            return this._createEmpFrag;
+        },
         onCreateEmpOpen: function () {
             var tableBinding = this.byId("EmpTab").getBinding("items");
             var oBindingContext = tableBinding.create(); //give a new binding context (memory)
             this.oBindingContext = oBindingContext;
             oBindingContext.created().then(function () {
-                MessageBox.success(this.oBindingContext.getObject().ID);
-                this._createEmpFrag.close();
+                MessageBox.success(this.oBindingContext.getObject().ID + "Employee created successfully.");
+                this.getDialog().close();
             }.bind(this), function (error) {
                 MessageBox.error(error);
             });
-            if (!this._createEmpFrag) {
-                this._createEmpFrag = sap.ui.xmlfragment(this.getView().getId(), "com.demo.empmgmtui.view.fragments.CreateNewEmp", this);
-                this.getView().addDependent(this._createEmpFrag);
-            }
-            this._createEmpFrag.setBindingContext(oBindingContext);
-            this._createEmpFrag.open();
+            this.getDialog().setBindingContext(oBindingContext);
+            this.getDialog().open();
         },
         onPressSave: function () {
-            var oModel = this.getOwnerComponent().getModel();
-            oModel.submitBatch("EmpGrp"); //UpdateGroupId from manifest.json file
+            this.oModel.submitBatch("EmpGrp"); //UpdateGroupId from manifest.json file
         },
         onPressCancel: function () {
-            this._createEmpFrag.close();
-        }
+            this.getDialog().close();
+        },
+        onEditEmpOpen: function () {
+            var oBindingContext = this.byId("EmpTab").getSelectedItem().getBindingContext();
+            this.getDialog().setBindingContext(oBindingContext);
+            this.getDialog().open();
+        },
+        onDeleteEmp: function () {
+            var oBindingContext = this.byId("EmpTab").getSelectedItem().getBindingContext();
+            var oPromise = oBindingContext.delete("EmpGrp");
+            this.oModel.submitBatch("EmpGrp");
+            oPromise.then(function () {
+                MessageBox.success("Employee deleted successfully.");
+            }, function (err) {
+                MessageBox.error(err);
+            });
+        },
+        onAddProject: function(){
+            var tableBinding = this.byId("PrjTab").getBinding("items");
+            var oBindingContext = tableBinding.create(); //Create a new memory of project table
+        },
     });
 });

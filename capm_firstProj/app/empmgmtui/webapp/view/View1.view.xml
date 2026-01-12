@@ -4,13 +4,15 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
-            <Table id="EmpTab" items="{/EmployeeSet}" class="sapUiSmallMargin" width="auto">
+            <Table id="EmpTab" items="{/EmployeeSet}" class="sapUiSmallMargin" width="auto" mode="SingleSelectLeft">
                 <headerToolbar>
                     <Toolbar>
                         <Title text="Employee Table"></Title>
                         <ToolbarSpacer ></ToolbarSpacer>
                         <!-- <SearchField id="SF" width="30%" liveChange="onSearch"></SearchField> -->
                         <Button text="Create New Employee" type="Emphasized" icon="sap-icon://add" press="onCreateEmpOpen"></Button>
+                    <Button text="Edit Employee" type="Emphasized" icon="sap-icon://edit" press="onEditEmpOpen"></Button>
+                    <Button text="Delete Employee" type="Reject" icon="sap-icon://delete" press="onDeleteEmp"></Button>
                     </Toolbar>
                 </headerToolbar>
                 <columns>

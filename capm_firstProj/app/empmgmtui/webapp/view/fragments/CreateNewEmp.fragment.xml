@@ -22,6 +22,29 @@
                 <Input value="{status}"/>
             </f:content>
         </f:SimpleForm>
+        <Table items="{projects}" id="PrjTab">
+            <headerToolbar>
+                <Toolbar >
+                    <Title text="Projects"></Title>
+                    <ToolbarSpacer></ToolbarSpacer>
+                    <Button icon="sap-icon://add" text="Add Pproject" press="onAddProject"/>
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column >
+                    <Text text="Project Name"></Text>
+                </Column>
+                <Column >
+                    <Text text="Client Name"></Text>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem >
+                    <Input value="{prjname}"></Input>
+                    <Input value="{client}"></Input>
+                </ColumnListItem>
+            </items>
+        </Table>
         <beginButton>
             <Button text="Save" type="Emphasized" press="onPressSave"></Button>
         </beginButton>
