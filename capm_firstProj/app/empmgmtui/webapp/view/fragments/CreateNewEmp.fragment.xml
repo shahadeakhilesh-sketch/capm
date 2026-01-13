@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m"
+<core:FragmentDefinition xmlns:unified="sap.ui.unified" xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:table="sap.ui.table"
@@ -20,6 +20,8 @@
                 <Input value="{rating}"/>
                 <Label text="Status"/>
                 <Input value="{status}"/>
+                <Label text="Upload Photo"/>
+                <unified:FileUploader id="FileUploader" sendXHR="true" useMultipart="false" httpRequestMethod="Put"></unified:FileUploader>
             </f:content>
         </f:SimpleForm>
         <Table items="{projects}" id="PrjTab">

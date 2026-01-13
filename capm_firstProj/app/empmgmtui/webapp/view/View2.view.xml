@@ -5,7 +5,7 @@
     xmlns:f="sap.ui.layout.form">
     <Page title="Employee Data">
         <content>
-            <ObjectHeader title="{name}" number="{salary}">
+            <ObjectHeader icon="/odata/v4/emp-mgmt/EmployeeSet({ID})/photo" title="{name}" number="{salary}" iconActive="true" iconPress="onDownload">
                 <attributes>
                     <ObjectAttribute title="ID" text="{ID}"></ObjectAttribute>
                     <ObjectAttribute title="Designation" text="{desig_code}"></ObjectAttribute>

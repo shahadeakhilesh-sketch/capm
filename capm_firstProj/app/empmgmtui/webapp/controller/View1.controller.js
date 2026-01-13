@@ -35,7 +35,11 @@ sap.ui.define([
             var oBindingContext = tableBinding.create(); //give a new binding context (memory)
             this.oBindingContext = oBindingContext;
             oBindingContext.created().then(function () {
-                MessageBox.success(this.oBindingContext.getObject().ID + " Employee created successfully.");
+                var EmpId = this.oBindingContext.getObject().ID;
+                MessageBox.success(EmpId + " Employee created successfully.");
+                var fileUploader = this.byId("FileUploader");
+                fileUploader.setUploadUrl("/odata/v4/emp-mgmt/EmployeeSet(" + EmpId + ")/photo");
+                fileUploader.upload();
                 this.getDialog().close();
             }.bind(this), function (error) {
                 MessageBox.error(error);
@@ -50,7 +54,7 @@ sap.ui.define([
             //     this.oModel.submitBatch("EmpGrp").then(function () {
             //         MessageBox.success("Employee updated successfully.");
             //     }, function (err) {
-            //         MessageBox.error(error);
+            //         MessageBox.error(err);
             //     });
             // }
         },
