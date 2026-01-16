@@ -1,9 +1,11 @@
-<core:FragmentDefinition xmlns:unified="sap.ui.unified" xmlns="sap.m"
+<core:FragmentDefinition xmlns:unified="sap.ui.unified"
+    xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:table="sap.ui.table"
-    xmlns:mvc="sap.ui.core.mvc">
-    <Dialog title="Create Employee" contentHeight="70%" contentWidth="50%">
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:upload="sap.m.upload">
+    <Dialog title="Create Employee" contentHeight="80%" contentWidth="80%">
         <f:SimpleForm editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="3" emptySpanM="3">
             <f:content>
                 <Label text="Name"/>
@@ -47,6 +49,11 @@
                 </ColumnListItem>
             </items>
         </Table>
+        <upload:UploadSet id="UploadSet" items="{docs}" instantUpload="false" multiple="true" httpRequestMethod="Put" afterItemAdded="onAfterItemAdded">
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{fileType}"/>
+            </upload:items> 
+        </upload:UploadSet>
         <beginButton>
             <Button text="Save" type="Emphasized" press="onPressSave"></Button>
         </beginButton>

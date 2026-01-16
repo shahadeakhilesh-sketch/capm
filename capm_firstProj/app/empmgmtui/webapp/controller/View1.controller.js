@@ -37,9 +37,19 @@ sap.ui.define([
             oBindingContext.created().then(function () {
                 var EmpId = this.oBindingContext.getObject().ID;
                 MessageBox.success(EmpId + " Employee created successfully.");
+                //START - Here we uploading single photo of an employee
                 var fileUploader = this.byId("FileUploader");
                 fileUploader.setUploadUrl("/odata/v4/emp-mgmt/EmployeeSet(" + EmpId + ")/photo");
                 fileUploader.upload();
+                //END - Here we uploading single photo of an employee
+                //START - Here we uploading multiple documents of an employee
+                var docs = this.oBindingContext.getObject().docs;
+                var files = this.byId("UploadSet").getIncompleteItems();
+                for (var i in docs) {
+                    files[i].setUploadUrl("/odata/v4/emp-mgmt/DocsSet(" + docs[i].ID + ")/fileContent");
+                    this.byId("UploadSet").uploadItem(files[i]);
+                }
+                //END - Here we uploading multiple documents of an employee
                 this.getDialog().close();
             }.bind(this), function (error) {
                 MessageBox.error(error);
@@ -79,6 +89,13 @@ sap.ui.define([
         onAddProject: function () {
             var tableBinding = this.byId("PrjTab").getBinding("items");
             var oBindingContext = tableBinding.create(); //Create a new memory of project table
+        },
+        onAfterItemAdded: function (oEvent) {
+            var docsBinding = this.byId("UploadSet").getBinding("items");
+            docsBinding.create({
+                "fileName": oEvent.getParameter("item").getFileObject().name,
+                "fileType": oEvent.getParameter("item").getFileObject().type
+            });
         },
     });
 });

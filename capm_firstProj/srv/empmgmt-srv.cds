@@ -5,4 +5,5 @@ service EmpMgmtService {
     entity ProjectSet as projection on empDB.Projects;
     entity DesigsSet as projection on empDB.Desigs;
     entity SkillsSet as projection on empDB.Skills;
+    entity DocsSet as projection on empDB.Docs;
 };
