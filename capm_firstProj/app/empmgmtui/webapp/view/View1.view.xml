@@ -31,6 +31,9 @@
                     <Column >
                         <Text text="Email"></Text>
                     </Column>
+                    <Column >
+                        <Text text="Rating"></Text>
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem type="Active" press="onPressRow">
@@ -39,6 +42,7 @@
                         <Text text="{desig_code}"></Text>
                         <Text text="{skill_code}"></Text>
                         <Text text="{email}"></Text>
+                        <Text text="{rating}"></Text>
                     </ColumnListItem>
                 </items>
             </Table>
