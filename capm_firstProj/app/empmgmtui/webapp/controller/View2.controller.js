@@ -12,10 +12,15 @@ sap.ui.define([
             var sEmpId = oEvent.getParameter("arguments").EMPID;
             this.getView().bindElement("/EmployeeSet(" + sEmpId + ")");
         },
-        onDownload: function () {
+        onDownloadPhoto: function () {
             var empId = this.getView().getBindingContext().getObject().ID;
             var sUrl = "/odata/v4/emp-mgmt/EmployeeSet(" + empId + ")/photo";
             sap.m.URLHelper.redirect(sUrl, true);
+        },
+        onDownloadDocs: function (oEvent) {
+            var docId = oEvent.getSource().getParent().getBindingContext().getObject().ID;
+            var sUrl = "/odata/v4/emp-mgmt/DocsSet(" + docId + ")/fileContent";
+            sap.m.URLHelper.redirect(sUrl, false);
         },
     });
 });

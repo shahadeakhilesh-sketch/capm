@@ -7,6 +7,7 @@ sap.ui.define([
 
     return Controller.extend("com.demo.empmgmtui.controller.View1", {
         onInit() {
+            this.aUploadItems = [];
             this.oModel = this.getOwnerComponent().getModel();
         },
         onSearch: function (oEvent) {
@@ -30,7 +31,7 @@ sap.ui.define([
             }
             return this._createEmpFrag;
         },
-        onCreateEmpOpen: function () {
+        onCreateEmp: function () {
             var tableBinding = this.byId("EmpTab").getBinding("items");
             var oBindingContext = tableBinding.create(); //give a new binding context (memory)
             this.oBindingContext = oBindingContext;
@@ -39,17 +40,28 @@ sap.ui.define([
                 MessageBox.success(EmpId + " Employee created successfully.");
                 //START - Here we uploading single photo of an employee
                 var fileUploader = this.byId("FileUploader");
-                fileUploader.setUploadUrl("/odata/v4/emp-mgmt/EmployeeSet(" + EmpId + ")/photo");
-                fileUploader.upload();
+                if (fileUploader.getValue()) {
+                    fileUploader.setUploadUrl("/odata/v4/emp-mgmt/EmployeeSet(" + EmpId + ")/photo");
+                    fileUploader.upload();
+                }
                 //END - Here we uploading single photo of an employee
                 //START - Here we uploading multiple documents of an employee
-                var docs = this.oBindingContext.getObject().docs;
-                var files = this.byId("UploadSet").getIncompleteItems();
-                for (var i in docs) {
-                    files[i].setUploadUrl("/odata/v4/emp-mgmt/DocsSet(" + docs[i].ID + ")/fileContent");
-                    this.byId("UploadSet").uploadItem(files[i]);
-                }
+                    // var docs = this.oBindingContext.getObject().docs;
+                    // var files = this.byId("UploadSet").getIncompleteItems();
+                    // for (var i in docs) {
+                    //     files[i].setUploadUrl("/odata/v4/emp-mgmt/DocsSet(" + docs[i].ID + ")/fileContent");
+                    //     this.byId("UploadSet").uploadItem(files[i]);
+                    // }
                 //END - Here we uploading multiple documents of an employee
+                //START - UploadSet with table
+                var docs = this.oBindingContext.getObject().docs;
+                var aUploader = this.byId("UploadSetwithTable").getUploader();
+                for (var i in docs) {
+                    this.aUploadItems[i].setUploadState("Ready");
+                    this.aUploadItems[i].setUploadUrl("odata/v4/emp-mgmt/DocsSet(" + docs[i].ID + ")/fileContent")
+                }
+                this.aUploadItems = [];
+                //END - UploadSet with table
                 this.getDialog().close();
             }.bind(this), function (error) {
                 MessageBox.error(error);
@@ -97,5 +109,13 @@ sap.ui.define([
                 "fileType": oEvent.getParameter("item").getFileObject().type
             });
         },
+        onSelFiles: function (oEvent) {
+            var docsBinding = this.byId("table_uploadSet").getBinding("items");
+            docsBinding.create({
+                fileName: oEvent.getParameter("item").getFileObject().name,
+                fileType: oEvent.getParameter("item").getFileObject().type
+            });
+            this.aUploadItems.push(oEvent.getParameter("item"));
+        }
     });
 });

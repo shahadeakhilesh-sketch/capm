@@ -1,10 +1,11 @@
-<core:FragmentDefinition xmlns:unified="sap.ui.unified"
+<core:FragmentDefinition xmlns:plugins="sap.m.plugins"
+    xmlns:unified="sap.ui.unified"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:table="sap.ui.table"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:upload="sap.m.upload">
+    xmlns:up="sap.m.upload">
     <Dialog title="Create Employee" contentHeight="80%" contentWidth="80%">
         <f:SimpleForm editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="3" emptySpanM="3">
             <f:content>
@@ -49,11 +50,44 @@
                 </ColumnListItem>
             </items>
         </Table>
-        <upload:UploadSet id="UploadSet" items="{docs}" instantUpload="false" multiple="true" httpRequestMethod="Put" afterItemAdded="onAfterItemAdded">
-            <upload:items>
-                <upload:UploadSetItem fileName="{fileName}" mediaType="{fileType}"/>
-            </upload:items> 
-        </upload:UploadSet>
+        <!-- <up:UploadSet id="UploadSet" items="{docs}" instantUpload="false" multiple="true" httpRequestMethod="Put" afterItemAdded="onAfterItemAdded">
+            <up:items>
+                <up:UploadSetItem fileName="{fileName}" mediaType="{fileType}"/>
+            </up:items> 
+        </up:UploadSet> -->
+        <Table id="table_uploadSet" items="{path:'docs',templateShareable:false}">
+            <headerToolbar>
+                <OverflowToolbar >
+                    <Title text="Documents"></Title>
+                    <ToolbarSpacer></ToolbarSpacer>
+                    <up:ActionsPlaceholder id="uploadButton" placeholderFor="UploadButtonPlaceholder"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <dependents>
+                <plugins:UploadSetwithTable id="UploadSetwithTable" multiple="true" httpRequestMethod="Put" beforeInitiatingItemUpload=".onSelFiles" uploadCompleted=".onUploadComplete">
+                    <plugins:rowConfiguration>
+                        <up:UploadItemConfiguration fileNamePath="fileName" mediaTypePath="fileType" />
+                    </plugins:rowConfiguration>
+                    <plugins:uploader>
+                        <up:UploaderTableItem httpRequestMethod="Put"/>
+                    </plugins:uploader>
+                </plugins:UploadSetwithTable>
+            </dependents>
+            <columns>
+                <Column >
+                    <Text text="File Name"></Text>
+                </Column>
+                <Column >
+                    <Text text="File Type"></Text>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem >
+                    <Text text="{fileName}"></Text>
+                    <Text text="{fileType}"></Text>
+                </ColumnListItem>
+            </items>
+        </Table>
         <beginButton>
             <Button text="Save" type="Emphasized" press="onPressSave"></Button>
         </beginButton>
