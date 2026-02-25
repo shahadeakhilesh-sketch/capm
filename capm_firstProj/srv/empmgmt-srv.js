@@ -1,4 +1,5 @@
-const cds = require('@sap/cds')
+const cds = require('@sap/cds');
+const { UPDATE, where } = require('@sap/cds/lib/ql/cds-ql');
 
 module.exports = class EmpMgmtService extends cds.ApplicationService {
     init() {
@@ -39,10 +40,19 @@ module.exports = class EmpMgmtService extends cds.ApplicationService {
             console.log(results);
             for (var i in results) {
                 results[i].name = "Mr " + results[i].name;
-                results[i].name = "Mr " + results[i].name;
             }
-        })
+        });
 
-        return super.init()
+        //## custom action, we always use on handler for custom action ##//
+        this.on("makeParmanent", async req => {
+            console.log("I am inside makeParmanent custom action.");
+            console.log(req.data);//req.data is coming from frontend side, once we trigger action and set parameter
+            var count = await UPDATE("Employees").set({status:req.data.status}).where({"ID":req.data.empId});
+            if(count>0){
+                req.reply("Update success.");
+            } 
+        });
+
+        return super.init();
     }
 }

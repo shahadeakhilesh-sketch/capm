@@ -83,5 +83,11 @@
                 </items>
             </IconTabBar>
         </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="Make Parmanent" type="Accept" press="onMakeParmanent"/>
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>
