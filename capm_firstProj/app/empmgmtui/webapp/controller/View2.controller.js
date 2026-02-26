@@ -35,7 +35,6 @@ sap.ui.define([
             }, function(error){
                 MessageBox.error(error);
             });
-
         },
     });
 });

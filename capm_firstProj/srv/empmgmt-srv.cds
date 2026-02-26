@@ -6,5 +6,5 @@ service EmpMgmtService {
     entity DesigsSet as projection on empDB.Desigs;
     entity SkillsSet as projection on empDB.Skills;
     entity DocsSet as projection on empDB.Docs;
-    action makeParmanent(empId: UUID, status: String) returns String;
+    action makeParmanent(empId: UUID, status: String) returns String; //Custom Action
 };
